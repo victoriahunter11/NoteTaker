@@ -41,6 +41,8 @@ app.post("/api/notes", function(req, res) {
 
 })
 
+app.delete
+
 app.get("/notes", function(req, res) {
     // res.send("Welcome to the Star Wars Page!")
     res.sendFile(path.join(__dirname, "./public/notes.html"));
