@@ -41,7 +41,10 @@ app.post("/api/notes", function(req, res) {
 
 })
 
-app.delete
+app.delete("/api/notes/:id", function (req, res) {
+    console.log('req', req.body);
+
+})
 
 app.get("/notes", function(req, res) {
     // res.send("Welcome to the Star Wars Page!")
