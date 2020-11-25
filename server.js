@@ -18,33 +18,33 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 
-// app.get("/api/notes", function(req, res) {
-//     fs.readFile("./db/db.json", function(err,data) {
-//         if (err) throw err;
-//         res.json(JSON.parse(data));
-//     })
-// });
+app.get("/api/notes", function(req, res) {
+    fs.readFile("./db/db.json", function(err,data) {
+        if (err) throw err;
+        res.json(JSON.parse(data));
+    })
+});
 
-// app.post("/api/notes", function(req, res) {
+app.post("/api/notes", function(req, res) {
+    console.log('req', req.body);
+    fs.readFile("./db/db.json", function(err, data) {
+        if (err) throw err;
+       var jsonData = JSON.parse(data);
+       console.log('jsonData1',jsonData);
+       jsonData.push(req.body);
+       console.log('jsonData2',jsonData);
+       fs.writeFile("./db/db.json", JSON.stringify(jsonData) , function(err, data) {
+           if (err) throw err;
+           res.json(jsonData);
+       })
+    })
+
+})
+
+// app.delete("/api/notes/:id", function (req, res) {
 //     console.log('req', req.body);
-//     fs.readFile("./db/db.json", function(err, data) {
-//         if (err) throw err;
-//        var jsonData = JSON.parse(data);
-//        console.log('jsonData1',jsonData);
-//        jsonData.push(req.body);
-//        console.log('jsonData2',jsonData);
-//        fs.writeFile("./db/db.json", JSON.stringify(jsonData) , function(err, data) {
-//            if (err) throw err;
-//            res.json(jsonData);
-//        })
-//     })
 
 // })
-
-// // app.delete("/api/notes/:id", function (req, res) {
-// //     console.log('req', req.body);
-
-// // })
 
 app.get("/notes", function(req, res) {
     // res.send("Welcome to the Star Wars Page!")
